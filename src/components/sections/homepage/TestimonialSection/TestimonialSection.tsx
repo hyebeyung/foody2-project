@@ -4,53 +4,24 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Swiper as SwiperInstance } from 'swiper';
 import TestimonialCard from './TestimonialCard';
-import SectionTitle from '../common/SectionTitle';
+import SectionTitle from '../../../common/SectionTitle';
+import { testimonials } from '../../../../constants/homepage';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import SectionContainer from '../../../shared/SectionContainer';
 
-const testimonials = [
-    {
-        id: 1,
-        image: '/images/testimonials/testimonial-1.jpg',
-        name: 'Client Name',
-        profession: 'Profession',
-        comment: 'Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.'
-    },
-    {
-        id: 2,
-        image: '/images/testimonials/testimonial-2.jpg',
-        name: 'Client Name',
-        profession: 'Profession',
-        comment: 'Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.'
-    },
-    {
-        id: 3,
-        image: '/images/testimonials/testimonial-3.jpg',
-        name: 'Client Name',
-        profession: 'Profession',
-        comment: 'Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.'
-    },
-    {
-        id: 4,
-        image: '/images/testimonials/testimonial-4.jpg',
-        name: 'Client Name',
-        profession: 'Profession',
-        comment: 'Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.'
-    },
-];
 
 const TestimonialSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
 
   return (
-    <section className="bg-gray-100 bg-icon-pattern py-24 mb-20">
-      <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="max-w-[500px] mx-auto mb-10">
+    <SectionContainer className="bg-gray-100 bg-icon-pattern py-24 mb-20">
+      {/* Section Header */}
+      <div className="max-w-[500px] mx-auto mb-10">
           <SectionTitle 
             title="Customer Review"
             description="Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo."
@@ -117,8 +88,7 @@ const TestimonialSection = () => {
             </button>
           </div>
         </div>
-      </div>
-    </section>
+    </SectionContainer>
   );
 };
 

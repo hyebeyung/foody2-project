@@ -1,8 +1,9 @@
+import SectionContainer from "../../../shared/SectionContainer";
+
 const VisitSection = () => {
     return (
-      <section className="bg-[#3cb815] bg-icon-pattern py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+      <SectionContainer className="bg-[#3cb815] bg-icon-pattern py-24">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
             {/* Content */}
             <div className="wow fadeIn" data-wow-delay="0.1s">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -25,8 +26,7 @@ const VisitSection = () => {
               </a>
             </div>
           </div>
-        </div>
-      </section>
+      </SectionContainer>
     );
   };
   

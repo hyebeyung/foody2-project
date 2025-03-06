@@ -4,6 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faEnvelope, faSearch, faShoppingBag, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import Link from "next/link";
+import DropdownMenu from './DropdownMenu';
+import { productMenuItems, knowledgeMenuItems } from '../../../constants/homepage';
+import { ROUTES } from '@/constants/routes';
+
 
 const Header: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -33,20 +37,20 @@ const Header: React.FC = () => {
                 : 'h-[44px] transform translate-y-0 opacity-100'
             }`}>
                 <div className='flex gap-5 py-3.5'>
-                    <small className='flex text-sm self-center'>
-                        <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4 me-2" />
+                    <small className='flex text-sm '>
+                        <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4 me-2 self-center" />
                         123 Street, New York, USA
                     </small>
-                    <small className='flex text-sm self-center'>
-                        <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 me-2" />
+                    <small className='flex text-sm'>
+                        <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 me-2 self-center" />
                         info@example.com
                     </small>
                     <div className='flex gap-3 flex-1 justify-end'>
                         <small className='text-sm'>Follow us:</small>
-                        <FontAwesomeIcon icon={faFacebook} className="w-4 h-4 ml-2 cursor-pointer hover:text-[#3cb815] transition-colors" />
-                        <FontAwesomeIcon icon={faTwitter} className="w-4 h-4 ml-2 cursor-pointer hover:text-[#3cb815] transition-colors" />
-                        <FontAwesomeIcon icon={faLinkedin} className="w-4 h-4 ml-2 cursor-pointer hover:text-[#3cb815] transition-colors" />
-                        <FontAwesomeIcon icon={faInstagram} className="w-4 h-4 ml-2 cursor-pointer hover:text-[#3cb815] transition-colors" />
+                        <FontAwesomeIcon icon={faFacebook} className="w-4 h-4 ml-2 self-center cursor-pointer hover:text-[#3cb815] transition-colors" />
+                        <FontAwesomeIcon icon={faTwitter} className="w-4 h-4 ml-2 self-center cursor-pointer hover:text-[#3cb815] transition-colors" />
+                        <FontAwesomeIcon icon={faLinkedin} className="w-4 h-4 ml-2 self-center cursor-pointer hover:text-[#3cb815] transition-colors" />
+                        <FontAwesomeIcon icon={faInstagram} className="w-4 h-4 ml-2 self-center cursor-pointer hover:text-[#3cb815] transition-colors" />
                     </div>
                 </div>
             </div>
@@ -64,19 +68,23 @@ const Header: React.FC = () => {
                 <div className='flex-1'>
                     <ul className='flex justify-end'>
                         <li className='py-[25px] px-[15px] hover:text-[#3cb815] transition-colors'>
-                            <Link href="#">Trang chủ</Link>
+                            <Link href={ROUTES.HOME}>Trang chủ</Link>
                         </li>
                         <li className='py-[25px] px-[15px] hover:text-[#3cb815] transition-colors'>
-                            <Link href="#">Giới thiệu</Link>
+                            <Link href={ROUTES.ABOUT}>Giới thiệu</Link>
+                        </li>
+                        <li className='group relative py-[25px] px-[15px] hover:text-[#3cb815] transition-colors'>
+                            <Link href={ROUTES.PRODUCTS}>Sản phẩm 
+                            <FontAwesomeIcon icon={faAngleDown} className='w-4 h-4 inline-block ml-1'/></Link>
+                            <DropdownMenu items={productMenuItems} />
+                        </li>
+                        <li className='group relative py-[25px] px-[15px] hover:text-[#3cb815] transition-colors'>
+                            <Link href="#">Kiến thức 
+                            <FontAwesomeIcon icon={faAngleDown} className='w-4 h-4 inline-block ml-1'/></Link>
+                            <DropdownMenu items={knowledgeMenuItems} />
                         </li>
                         <li className='py-[25px] px-[15px] hover:text-[#3cb815] transition-colors'>
-                            <Link href="#">Sản phẩm <FontAwesomeIcon icon={faAngleDown} className='w-4 h-4 inline-block ml-1'/></Link>
-                        </li>
-                        <li className='py-[25px] px-[15px] hover:text-[#3cb815] transition-colors'>
-                            <Link href="#">Kiến thức <FontAwesomeIcon icon={faAngleDown} className='w-4 h-4 inline-block ml-1'/></Link>
-                        </li>
-                        <li className='py-[25px] px-[15px] hover:text-[#3cb815] transition-colors'>
-                            <Link href="#">Liên hệ</Link>
+                            <Link href={ROUTES.CONTACT}>Liên hệ</Link>
                         </li>
                     </ul>
                 </div>

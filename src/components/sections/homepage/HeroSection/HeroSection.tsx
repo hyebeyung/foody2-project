@@ -1,42 +1,16 @@
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import {HERO_SLIDES} from '../../../../constants/homepage';
+import { useSlider } from '../../../hooks/useSlider';
+import Button from '../../../shared/Button';
+import AnimatedSection from '../../../shared/AnimatedSection';
 
 function HeroSection() {
-    const [currentSlide, setCurrentSlide] = useState(0);
+    const {currentSlide, nextSlide, prevSlide} = useSlider(HERO_SLIDES.length);
       
-      const slides = [
-        {
-          image: '/images/carousel/carousel-1.jpg',
-          title: 'Organic Food Is Good For Health',
-        },
-        {
-          image: '/images/carousel/carousel-2.jpg',
-          title: 'Natural Food Is Always Healthy',
-        }
-      ];
-    
-      useEffect(() => {
-        const timer = setInterval(() => {
-          setCurrentSlide((prevSlide) => 
-            prevSlide === slides.length - 1 ? 0 : prevSlide + 1
-          );
-        }, 5000); // Change slide every 5 seconds
-    
-        return () => clearInterval(timer);
-      }, [slides.length]);
-    
-      const nextSlide = () => {
-        setCurrentSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1);
-      };
-    
-      const prevSlide = () => {
-        setCurrentSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
-      };
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Slides */}
-      {slides.map((slide, index) => (
+      {HERO_SLIDES.map((slide, index) => (
         <div
           key={index}
           className={`absolute w-full h-full transition-all duration-500 ease-in-out transform ${
@@ -55,23 +29,23 @@ function HeroSection() {
               <div className="container mx-auto px-4 h-full">
                 <div className="flex items-center h-full">
                   <div className="w-full md:w-2/3 text-white">
-                    <h1 className="text-4xl md:text-6xl text-black font-bold mb-8 animate-slideInDown">
-                      {slide.title}
-                    </h1>
-                    <div className="flex gap-4">
-                      <Link 
-                        href="/products"
-                        className="bg-[#3cb815] hover:bg-[#2f9010] text-white px-8 py-3 rounded-full transition-colors duration-300"
-                      >
-                        Products
-                      </Link>
-                      <Link 
-                        href="/services"
-                        className="bg-[#f65005] hover:bg-[#d94604] text-white px-8 py-3 rounded-full transition-colors duration-300"
-                      >
-                        Services
-                      </Link>
-                    </div>
+                    <AnimatedSection animation="fadeInUp" delay={0.1}>
+                      <h1 className="text-4xl md:text-6xl text-black font-bold mb-8 animate-slideInDown">
+                        {slide.title}
+                      </h1>
+                    </AnimatedSection>
+                    
+                    <AnimatedSection animation="fadeInUp" delay={0.1}>
+                      <div className="flex gap-4">
+                        <Button href="/products" variant="primary">
+                            Products
+                        </Button>
+                        <Button href="/services" variant="second">
+                            Services
+                        </Button>
+                      </div>
+                    </AnimatedSection>
+                    
                   </div>
                 </div>
               </div>
