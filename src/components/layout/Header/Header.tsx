@@ -92,7 +92,7 @@ const Header: React.FC = () => {
                     <Link href="#" className='self-center'>
                         <FontAwesomeIcon icon={faSearch} className="bg-white w-8 h-8 p-2 rounded-full hover:bg-[#3cb815] hover:text-white transition-all" />
                     </Link>
-                    <Link href="#" className='self-center'>
+                    <Link href="/gio-hang" className='self-center'>
                         <FontAwesomeIcon icon={faShoppingBag} className="bg-white w-8 h-8 p-2 rounded-full hover:bg-[#3cb815] hover:text-white transition-all"/>
                     </Link>
                 </div>

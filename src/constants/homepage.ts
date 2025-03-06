@@ -43,6 +43,7 @@ export const products = [
       title: 'Fresh Tomato',
       price: 19.00,
       oldPrice: 29.00,
+      category: 'vegetable',
     },
     {
       id: 2,
@@ -50,6 +51,7 @@ export const products = [
       title: 'Fresh Tomato',
       price: 19.00,
       oldPrice: 29.00,
+      category: 'vegetable',
     },
     {
       id: 3,
@@ -57,6 +59,7 @@ export const products = [
       title: 'Fresh Tomato',
       price: 19.00,
       oldPrice: 29.00,
+      category: 'vegetable'
     },
     {
       id: 4,
@@ -64,6 +67,7 @@ export const products = [
       title: 'Fresh Tomato',
       price: 19.00,
       oldPrice: 29.00,
+      category: 'vegetable'
     },
     {
       id: 5,
@@ -71,6 +75,7 @@ export const products = [
       title: 'Fresh Tomato',
       price: 19.00,
       oldPrice: 29.00,
+      category: 'vegetable'
     },
     {
       id: 6,
@@ -78,6 +83,7 @@ export const products = [
       title: 'Fresh Tomato',
       price: 19.00,
       oldPrice: 29.00,
+      category: 'vegetable'
     },
     {
       id: 7,
@@ -85,6 +91,7 @@ export const products = [
       title: 'Fresh Tomato',
       price: 19.00,
       oldPrice: 29.00,
+      category: 'vegetable'
     },
     {
       id: 8,
@@ -92,6 +99,31 @@ export const products = [
       title: 'Fresh Tomato',
       price: 19.00,
       oldPrice: 29.00,
+      category: 'vegetable'
+    },
+    {
+      id: 9,
+      image: '/images/products/product-8.jpg',
+      title: 'Fresh Tomato',
+      price: 19.00,
+      oldPrice: 29.00,
+      category: 'vegetable'
+    },
+    {
+      id: 10,
+      image: '/images/products/product-8.jpg',
+      title: 'Fresh Tomato',
+      price: 19.00,
+      oldPrice: 29.00,
+      category: 'fruits'
+    },
+    {
+      id: 11,
+      image: '/images/products/product-8.jpg',
+      title: 'Fresh Tomato',
+      price: 19.00,
+      oldPrice: 29.00,
+      category: 'fresh'
     },
 ];
 
