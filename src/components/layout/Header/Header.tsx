@@ -1,16 +1,18 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faEnvelope, faSearch, faShoppingBag, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faEnvelope, faSearch, faShoppingBag, faAngleDown, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import Link from "next/link";
 import DropdownMenu from './DropdownMenu';
 import { productMenuItems, knowledgeMenuItems } from '../../../constants/homepage';
 import { ROUTES } from '@/constants/routes';
+import LoginModal from '@/components/auth/LoginModal';
 
 
 const Header: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [loginModalOpen, setLoginModalOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -95,6 +97,14 @@ const Header: React.FC = () => {
                     <Link href="/gio-hang" className='self-center'>
                         <FontAwesomeIcon icon={faShoppingBag} className="bg-white w-8 h-8 p-2 rounded-full hover:bg-[#3cb815] hover:text-white transition-all"/>
                     </Link>
+                    <Link href="#" className='self-center' onClick={() => setLoginModalOpen(true)}>
+                        <FontAwesomeIcon icon={faUser} className="bg-white w-8 h-8 p-2 rounded-full hover:bg-[#3cb815] hover:text-white transition-all"/>
+                    </Link>
+
+                    <LoginModal 
+                        open={loginModalOpen}
+                        onClose={() => setLoginModalOpen(false)}
+                    />
                 </div>
             </nav>
         </header>
