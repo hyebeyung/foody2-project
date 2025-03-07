@@ -101,14 +101,9 @@ const Footer = () => {
       {/* Copyright Section */}
       <div className="border-t border-gray-800">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-col md:flex-row justify-between text-center md:text-left">
+          <div className="flex flex-col md:flex-row justify-center text-center md:text-left">
             <div className="mb-2 md:mb-0">
               © <Link href="#" className="hover:underline text-white">Your Site Name</Link>, All Right Reserved.
-            </div>
-            <div className='text-right'>
-              Designed By <Link href="https://htmlcodex.com" className="text-white hover:text-[#3CB815]">HTML Codex</Link>
-              <br />
-              Distributed By: <Link href="https://themewagon.com" className="text-white hover:text-[#3CB815]">ThemeWagon</Link>
             </div>
           </div>
         </div>

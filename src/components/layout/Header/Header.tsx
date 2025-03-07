@@ -7,12 +7,12 @@ import Link from "next/link";
 import DropdownMenu from './DropdownMenu';
 import { productMenuItems, knowledgeMenuItems } from '../../../constants/homepage';
 import { ROUTES } from '@/constants/routes';
-import LoginModal from '@/components/auth/LoginModal';
+import AuthModal from '@/components/auth/AuthModal';
 
 
 const Header: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [loginModalOpen, setLoginModalOpen] = useState(false);
+    const [authModalOpen, setAuthModalOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -97,13 +97,13 @@ const Header: React.FC = () => {
                     <Link href="/gio-hang" className='self-center'>
                         <FontAwesomeIcon icon={faShoppingBag} className="bg-white w-8 h-8 p-2 rounded-full hover:bg-[#3cb815] hover:text-white transition-all"/>
                     </Link>
-                    <Link href="#" className='self-center' onClick={() => setLoginModalOpen(true)}>
+                    <Link href="#" className='self-center' onClick={() => setAuthModalOpen(true)}>
                         <FontAwesomeIcon icon={faUser} className="bg-white w-8 h-8 p-2 rounded-full hover:bg-[#3cb815] hover:text-white transition-all"/>
                     </Link>
 
-                    <LoginModal 
-                        open={loginModalOpen}
-                        onClose={() => setLoginModalOpen(false)}
+                    <AuthModal 
+                        open={authModalOpen}
+                        onClose={() => setAuthModalOpen(false)}
                     />
                 </div>
             </nav>
