@@ -1,18 +1,20 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faEnvelope, faSearch, faShoppingBag, faAngleDown, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faEnvelope, faShoppingBag, faAngleDown, faUser,faBars,faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import Link from "next/link";
 import DropdownMenu from './DropdownMenu';
 import { productMenuItems, knowledgeMenuItems } from '../../../constants/homepage';
 import { ROUTES } from '@/constants/routes';
 import AuthModal from '@/components/auth/AuthModal';
+import SearchBar from '@/components/common/SearchBar';
 
 
 const Header: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [authModalOpen, setAuthModalOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -33,7 +35,7 @@ const Header: React.FC = () => {
     return (
         <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
             {/* Top bar - sẽ ẩn khi scroll */}
-            <div className={`border-b border-[#d1d4da] px-12 transition-all duration-300 overflow-hidden ${
+            <div className={`hidden lg:block border-b border-[#d1d4da] px-12 transition-all duration-300 overflow-hidden ${
                 isScrolled 
                 ? 'h-0 transform -translate-y-full opacity-0' 
                 : 'h-[44px] transform translate-y-0 opacity-100'
@@ -58,16 +60,28 @@ const Header: React.FC = () => {
             </div>
 
             {/* Main navigation */}
-            <nav className={`flex px-12 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-0'}`}>
+            <nav className={`flex px-4 lg:px-12 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-0'}`}>
                 <div className='flex'>
-                    <Link href="#" className='text-[40px]'>
+                    <Link href="#" className='text-[40px] self-center'>
                         <h1 className='font-bold text-[#3cb815]'>F
                             <span className='text-[#f65005]'>oo</span>
                             dy
                         </h1>
                     </Link>
                 </div>
-                <div className='flex-1'>
+
+                <button 
+                    className="lg:hidden ml-auto flex items-center"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                >
+                    <FontAwesomeIcon 
+                        icon={isMobileMenuOpen ? faTimes : faBars} 
+                        className="w-6 h-6 text-[#3cb815]"
+                    />
+                </button>
+
+                {/* Desktop Menu */}
+                <div className='hidden lg:flex flex-1'>
                     <ul className='flex justify-end'>
                         <li className='py-[25px] px-[15px] hover:text-[#3cb815] transition-colors'>
                             <Link href={ROUTES.HOME}>Trang chủ</Link>
@@ -90,21 +104,89 @@ const Header: React.FC = () => {
                         </li>
                     </ul>
                 </div>
+
+                {/* Desktop Icons */}
                 <div className='flex gap-3 ml-[24px]'>
-                    <Link href="#" className='self-center'>
-                        <FontAwesomeIcon icon={faSearch} className="bg-white w-8 h-8 p-2 rounded-full hover:bg-[#3cb815] hover:text-white transition-all" />
-                    </Link>
+                    <div className='self-center'>
+                        <SearchBar />
+                    </div>
                     <Link href="/gio-hang" className='self-center'>
-                        <FontAwesomeIcon icon={faShoppingBag} className="bg-white w-8 h-8 p-2 rounded-full hover:bg-[#3cb815] hover:text-white transition-all"/>
+                        <FontAwesomeIcon icon={faShoppingBag} className="hover:bg-[#3cb815]  p-2 bg-white rounded-full hover:text-white transition-all"/>
                     </Link>
                     <Link href="#" className='self-center' onClick={() => setAuthModalOpen(true)}>
-                        <FontAwesomeIcon icon={faUser} className="bg-white w-8 h-8 p-2 rounded-full hover:bg-[#3cb815] hover:text-white transition-all"/>
+                        <FontAwesomeIcon icon={faUser} className="bg-white p-2 rounded-full hover:bg-[#3cb815] hover:text-white transition-all"/>
                     </Link>
 
                     <AuthModal 
                         open={authModalOpen}
                         onClose={() => setAuthModalOpen(false)}
                     />
+                </div>
+
+                {/* Mobile Menu */}
+                <div className={`
+                    lg:hidden fixed top-[60px] left-0 w-full bg-white shadow-lg
+                    transition-all duration-300 ease-in-out
+                    ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}
+                `}>
+                    <ul className='py-4'>
+                        <li className='px-6 py-3 hover:bg-gray-50'>
+                            <Link href={ROUTES.HOME}>Trang chủ</Link>
+                        </li>
+                        <li className='px-6 py-3 hover:bg-gray-50'>
+                            <Link href={ROUTES.ABOUT}>Giới thiệu</Link>
+                        </li>
+                        <li className='px-6 py-3 hover:bg-gray-50'>
+                            <div 
+                                className="flex justify-between items-center"
+                                onClick={() => {/* Toggle submenu */}}
+                            >
+                                <Link href={ROUTES.PRODUCTS}>Sản phẩm</Link>
+                                <FontAwesomeIcon icon={faAngleDown} className='w-4 h-4'/>
+                            </div>
+                            {/* Submenu */}
+                            <ul className="pl-4 mt-2 space-y-2">
+                                {productMenuItems.map((item, index) => (
+                                    <li key={index} className="py-2">
+                                        <Link href={item.href}>{item.title}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
+                        <li className='px-6 py-3 hover:bg-gray-50'>
+                            <div 
+                                className="flex justify-between items-center"
+                                onClick={() => {/* Toggle submenu */}}
+                            >
+                                <Link href="#">Kiến thức</Link>
+                                <FontAwesomeIcon icon={faAngleDown} className='w-4 h-4'/>
+                            </div>
+                            {/* Submenu */}
+                            <ul className="pl-4 mt-2 space-y-2">
+                                {knowledgeMenuItems.map((item, index) => (
+                                    <li key={index} className="py-2">
+                                        <Link href={item.href}>{item.title}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
+                        <li className='px-6 py-3 hover:bg-gray-50'>
+                            <Link href={ROUTES.CONTACT}>Liên hệ</Link>
+                        </li>
+                        
+                        {/* Mobile Icons */}
+                        <li className='px-6 py-3 border-t'>
+                            <div className='flex gap-4'>
+                                <SearchBar />
+                                <Link href="/gio-hang">
+                                    <FontAwesomeIcon icon={faShoppingBag} className="w-6 h-6"/>
+                                </Link>
+                                <button onClick={() => setAuthModalOpen(true)}>
+                                    <FontAwesomeIcon icon={faUser} className="w-6 h-6"/>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         </header>
